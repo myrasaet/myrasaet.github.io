@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myra F. Saet | Data Scientist</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#090d16',
+                        darkcard: 'rgba(17, 24, 39, 0.7)',
+                        accentTeal: '#14b8a6',
+                        accentCyan: '#06b6d4',
+                        accentIndigo: '#6366f1',
+                        accentEmerald: '#10b981',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #090d16;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism card styles */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(20, 184, 166, 0.4);
+            box-shadow: 0 12px 40px -10px rgba(20, 184, 166, 0.25);
+        }
+
+        /* Glow Gradient Effects */
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 30%, #06b6d4 70%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-border-glow {
+            position: relative;
+        }
+        .gradient-border-glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, #10b981, #06b6d4, #6366f1);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.25;
+            transition: opacity 0.3s ease;
+        }
+        .gradient-border-glow:hover::before {
+            opacity: 0.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #14b8a6;
+        }
+
+        /* Active Nav Styling */
+        .nav-link.active {
+            color: #14b8a6;
+        }
+        .nav-link.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #14b8a6, #06b6d4);
+            border-radius: 2px;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body class="selection:bg-teal-500 selection:text-white">
+
+    <!-- Background Glow Orbs -->
+    <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse-slow"></div>
+    <div class="fixed bottom-1/4 right-10 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+    <div class="fixed top-1/2 right-1/3 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-darkbg/80 border-b border-gray-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-500 to-cyan-500 flex items-center justify-center font-bold text-darkbg shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+                    MS
+                </div>
+                <div>
+                    <span class="font-bold text-lg text-white tracking-wide block leading-none">Myra F. Saet</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#hero" class="nav-link hover:text-teal-400 transition-colors py-1">About</a>
+                <a href="#projects" class="nav-link hover:text-teal-400 transition-colors py-1">Projects</a>
+                <a href="#skills" class="nav-link hover:text-teal-400 transition-colors py-1">Skills</a>
+                <a href="#experience" class="nav-link hover:text-teal-400 transition-colors py-1">Experience</a>
+                <a href="#achievements" class="nav-link hover:text-teal-400 transition-colors py-1">Awards</a>
+                <a href="#education" class="nav-link hover:text-teal-400 transition-colors py-1">Education</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="mailto:myra.saet@gmail.com" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-darkbg font-semibold text-sm shadow-md shadow-teal-500/20 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-regular me-2"></i>Contact Me
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-xl p-2 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-2xl border-b border-gray-800 px-6 py-6 space-y-4">
+            <a href="#hero" class="block text-gray-300 hover:text-teal-400 font-medium py-2">About</a>
+            <a href="#projects" class="block text-gray-300 hover:text-teal-400 font-medium py-2">Projects</a>
+            <a href="#skills" class="block text-gray-300 hover:text-teal-400 font-medium py-2">Skills</a>
+            <a href="#experience" class="block text-gray-300 hover:text-teal-400 font-medium py-2">Experience</a>
+            <a href="#achievements" class="block text-gray-300 hover:text-teal-400 font-medium py-2">Awards & Certifications</a>
+            <a href="#education" class="block text-gray-300 hover:text-teal-400 font-medium py-2">Education</a>
+            <a href="mailto:myra.saet@gmail.com" class="block text-center w-full py-3 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-darkbg font-semibold">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="pt-24">
+        
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-[88vh] flex items-center relative px-6 py-12">
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Column -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                        <!-- Profile Image -->
+                        <div class="relative group flex-shrink-0">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 via-cyan-500 to-indigo-500 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-500"></div>
+                            <img src="profile-pic.jpg" alt="Myra F. Saet" class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-2 border-teal-400/50 shadow-2xl">
+                        </div>
+                        
+                        <!-- Main Headline -->
+                        <div class="space-y-3">
+                            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                                Hi! I'm <span class="gradient-text">Myra</span>
+                            </h1>
+                            <p class="text-lg sm:text-xl text-teal-400/90 font-medium h-8 flex items-center">
+                                <span id="typed-text"></span><span class="animate-pulse text-teal-300">|</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Career Objective Summary -->
+                    <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        I'm pursuing a Data Science career in healthcare leveraging Machine Learning, Artificial Intelligence, Data Visualization, and Natural Language Processing (NLP) to solve complex domain challenges, drive predictive insights, and optimize outcomes.
+                    </p>
+
+                    <!-- Contact & Social Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="mailto:myra.saet@gmail.com" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-darkbg font-bold text-sm shadow-lg shadow-teal-500/25 flex items-center gap-2 transition-all transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-envelope"></i> Get In Touch
+                        </a>
+                        <a href="https://linkedin.com/in/myra-saet" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl glass-card hover:bg-gray-800/80 text-gray-200 font-semibold text-sm flex items-center gap-2 border border-gray-700/60 hover:border-teal-500/50 transition-all">
+                            <i class="fa-brands fa-linkedin text-teal-400 text-lg"></i> LinkedIn Profile
+                        </a>
+                        <a href="https://public.tableau.com/profile/myra.saet8551#!/" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl glass-card hover:bg-gray-800/80 text-gray-200 font-semibold text-sm flex items-center gap-2 border border-gray-700/60 hover:border-cyan-500/50 transition-all">
+                            <i class="fa-solid fa-chart-pie text-cyan-400 text-lg"></i> Tableau Profile
+                        </a>
+                    </div>
+
+                    <!-- Contact Details Quick Bar -->
+                    <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-location-dot text-teal-400"></i>
+                            <span>Manila, Philippines</span>
+                    </div>
+
+                </div>
+
+                <!-- Hero Right Column / Stats Grid -->
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <!-- Card Glow Background -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-indigo-500 rounded-3xl blur-2xl opacity-20"></div>
+                        
+                        <div class="relative glass-card rounded-3xl p-8 space-y-6 border border-gray-800">
+                            <div class="flex items-center justify-between pb-4 border-b border-gray-800">
+                                <div>
+                                    <h3 class="text-white font-bold text-lg">Highlights &amp; Impact</h3>
+                                    <p class="text-xs text-gray-400">Proven track record in Data Science & AI</p>
+                                </div>
+                                <span class="p-2.5 rounded-xl bg-teal-500/10 text-teal-400 text-xl"><i class="fa-solid fa-brain"></i></span>
+                            </div>
+
+                            <!-- Stat Item 1 -->
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-gray-900/60 border border-gray-800/80">
+                                <div class="w-14 h-14 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 font-extrabold text-2xl">
+                                    8+
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold text-base">Years Experience</h4>
+                                    <p class="text-xs text-gray-400">In Data Science, ML & Analytics (Philippines & Japan)</p>
+                                </div>
+                            </div>
+
+                            <!-- Stat Item 2 -->
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-gray-900/60 border border-gray-800/80">
+                                <div class="w-14 h-14 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 font-extrabold text-2xl">
+                                    12+
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold text-base">ML / NLP / AI Projects</h4>
+                                    <p class="text-xs text-gray-400">Deployed across Healthcare, FinTech & Public Sector</p>
+                                </div>
+                            </div>
+
+                            <!-- Stat Item 3 -->
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-gray-900/60 border border-gray-800/80">
+                                <div class="w-14 h-14 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 font-extrabold text-2xl">
+                                    9+
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold text-base">Awards & Certifications</h4>
+                                    <p class="text-xs text-gray-400">Hackathon winner, speaker, and certified engineer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="py-20 px-6 border-t border-gray-800/40 relative">
+            <div class="max-w-7xl mx-auto space-y-12">
+                
+                <!-- Section Header -->
+                <div class="text-center space-y-4 max-w-3xl mx-auto">
+                    <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold">Featured Portfolio</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Impactful Data Science & AI Projects</h3>
+                    <p class="text-gray-400 text-sm sm:text-base">A curated collection of machine learning models, natural language processing solutions, and analytics projects across healthcare, finance, and social sectors.</p>
+                </div>
+
+                <!-- Filter Tab Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3" id="project-filters">
+                    <button data-filter="all" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-gradient-to-r from-teal-500 to-cyan-500 text-darkbg shadow-lg shadow-teal-500/20">
+                        All Projects
+                    </button>
+                    <button data-filter="healthcare" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white hover:border-teal-500/40">
+                        Healthcare &amp; Medical
+                    </button>
+                    <button data-filter="fintech" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white hover:border-teal-500/40">
+                        FinTech &amp; Risk
+                    </button>
+                    <button data-filter="nlp" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white hover:border-teal-500/40">
+                        NLP &amp; AI
+                    </button>
+                    <button data-filter="public" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white hover:border-teal-500/40">
+                        Public Sector &amp; Social
+                    </button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                    
+                    <!-- Project 1 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="healthcare nlp">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-300 border border-teal-500/20">Healthcare Analytics</span>
+                                    <i class="fa-solid fa-notes-medical text-teal-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">Healthcare Marketing Research Tool</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Machine learning suite for the pharmaceutical industry. Includes early drug adapter prediction, optimal channel mix allocation, and churn detection.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">SHAP</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Feature Engineering</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Predictive ML</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="healthcare">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Medical AI</span>
+                                    <i class="fa-solid fa-stethoscope text-emerald-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">
+                                    <a href="https://github.com/myrasaet/VITAS" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                        <span>Machine Learning Aided Diagnosis</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                                    </a>
+                                </h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">An offline adaptive questionnaire engine and symptom gathering tool that streamlines diagnosis and provides explainable predictions for healthcare practitioners.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Clinical Diagnosis</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Adaptive AI</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">SHAP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="healthcare nlp">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Health Insurance</span>
+                                    <i class="fa-solid fa-file-waveform text-cyan-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">Clinical Diagnosis Classification</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Multilabel classification model applied to health insurance diagnosis reports. Categorizes complex unstructured clinical reports into standardized anatomical classifications.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Multilabel NLP</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Text Mining</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Insurance Tech</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="fintech nlp">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">FinTech &amp; ESG</span>
+                                    <i class="fa-solid fa-leaf text-indigo-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">Sustainability Accounting &amp; ESG Analysis</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">An ESG (Environmental, Social, Governance) analysis utilizing Topic Modeling and Named Entity Recognition (NER) to evaluate corporate sustainability compliance.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">ESG NLP</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Topic Modeling</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Risk Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="fintech nlp">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">LegalTech &amp; Finance</span>
+                                    <i class="fa-solid fa-shield-halved text-purple-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">Contracts Analysis</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Natural Language Inference (NLI) driven contract auditing platform for legal decision recommendation.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">NLI</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Legal Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="fintech nlp">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">LegalTech &amp; Finance</span>
+                                    <i class="fa-solid fa-shield-halved text-purple-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">Fraud Detection</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Predictive modeling applied to detection of suspicious transactions from financial documents.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Fraud AI</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Legal Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="fintech nlp">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/20">FinTech</span>
+                                    <i class="fa-solid fa-receipt text-blue-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">Intelligent Tax Accounting Platform</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Document intelligence platform integrating Optical Character Recognition (OCR), Entity Recognition, and Text Feature Extraction for structured tax workflow automation.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">OCR &amp; NER</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Document AI</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Automation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 8 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="public">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20">Education</span>
+                                    <i class="fa-solid fa-graduation-cap text-amber-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">
+                                    <a href="https://public.tableau.com/app/profile/myra.saet8551/viz/BARMMEducv4/Dashboard1" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                        <span>Education Accessibility Analysis of BARMM</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                                    </a>
+                                </h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Spatial analysis and data visualization project evaluating education accessibility, resource distribution gaps, and infrastructure needs across BARMM.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Spatial Analytics</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Public Sector</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 9 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="public">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20">Education</span>
+                                    <i class="fa-solid fa-graduation-cap text-amber-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">
+                                    <a href="https://public.tableau.com/app/profile/myra.saet8551/viz/Educationgap_16068356551150/Dashboard1" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                        <span>Global Analysis of Education and Socio-economic Gaps</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                                    </a>
+                                </h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Analysis of global school completion rates and socio-economic statistics.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Data Visualization</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Data Processing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 10 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="nlp">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-300 border border-rose-500/20">Conversational AI</span>
+                                    <i class="fa-solid fa-comments text-rose-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">E-commerce Conversational Chatbots</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Intent identification, dialogue state management, and multi-turn conversational agents built to elevate automated customer support systems.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Dialog Systems</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">E-Commerce</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 11 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="public">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Transport Analytics</span>
+                                    <i class="fa-solid fa-train text-cyan-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">
+                                    <a href="https://public.tableau.com/app/profile/myra.saet8551/viz/HowisMRT3AnOperationalReview_0/MRTOperationalReview" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                        <span>Operational Review and Analysis of MRT3</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                                    </a>
+                                </h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Analysis of ridership and incident data of MRT3.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Data Visualization</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Data Processing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 12 -->
+                    <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="public">
+                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Tourism</span>
+                                    <i class="fa-solid fa-plane text-cyan-400 text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white hover:text-teal-300 transition-colors">Segmentation Analysis of Filipino Tourists in Japan</h4>
+                                <p class="text-gray-400 text-xs line-clamp-3">Analysis of market segments of Filipino tourists in Japan.</p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Data Visualization</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-800 text-gray-300">Data Processing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-20 px-6 border-t border-gray-800/40 relative">
+            <div class="max-w-7xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-4 max-w-3xl mx-auto">
+                    <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold">Technical Expertise</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Skills &amp; Technology Stack</h3>
+                    <p class="text-gray-400 text-sm sm:text-base">Comprehensive skill set spanning machine learning engineering, statistical modeling, data visualization, and domain specialization.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Skill Group 1 -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4 hover:border-teal-500/40 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-teal-500/10 text-teal-400 text-xl">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-lg">Machine Learning &amp; AI</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-teal-300">Predictive Modeling</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-teal-300">Feature Engineering</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-teal-300">Model Explainability</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Group 2 -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4 hover:border-teal-500/40 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 text-xl">
+                                <i class="fa-solid fa-language"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-lg">NLP &amp; Speech AI</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-cyan-300">Text Classification</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-cyan-300">Named Entity Recognition (NER)</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-cyan-300">Topic Modeling</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-cyan-300">NLI (Text Inference)</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-cyan-300">Chatbot Dialogue AI</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Group 3 -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4 hover:border-teal-500/40 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-indigo-500/10 text-indigo-400 text-xl">
+                                <i class="fa-solid fa-chart-column"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-lg">Data &amp; Visualization</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-indigo-300">Tableau</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-indigo-300">Power BI</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-indigo-300">Exploratory Data Analysis</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-indigo-300">Executive Dashboards</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Group 4 -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4 hover:border-teal-500/40 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 text-xl">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-lg">Languages &amp; Core Stack</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-emerald-300">Python</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-emerald-300">SQL / Relational DBs</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-emerald-300">R</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-emerald-300">Git &amp; Version Control</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Group 5 -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4 hover:border-teal-500/40 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-purple-500/10 text-purple-400 text-xl">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-lg">ETL &amp; Engineering</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-purple-300">ETL Pipelines</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-purple-300">Data Processing</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-purple-300">Optical Character Recognition</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Group 6 -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4 hover:border-teal-500/40 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-amber-500/10 text-amber-400 text-xl">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-lg">Spoken Languages</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-amber-300">Japanese (JLPT N4 Certified)</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-amber-300">English (Professional)</span>
+                            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-900 border border-gray-800 text-amber-300">Filipino (Native speaker)</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE TIMELINE SECTION -->
+        <section id="experience" class="py-20 px-6 border-t border-gray-800/40 relative">
+            <div class="max-w-5xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-4 max-w-3xl mx-auto">
+                    <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold">Career Pathway</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Work Experience</h3>
+                    <p class="text-gray-400 text-sm sm:text-base">8+ years of hands-on data science innovation in corporate tech and international assignees in Tokyo, Japan.</p>
+                </div>
+
+                <!-- Vertical Timeline Container -->
+                <div class="relative border-l-2 border-gray-800 ml-4 md:ml-32 space-y-12">
+                    
+                    <!-- Experience Node 1 -->
+                    <div class="relative pl-8 md:pl-12">
+                        <!-- Node Circle Indicator -->
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-darkbg border-2 border-teal-400 flex items-center justify-center text-teal-400 text-xs shadow-lg shadow-teal-500/30">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        
+                        <!-- Timeline Date Stamp (Desktop Side Label) -->
+                        <div class="hidden md:block absolute -left-36 top-2 text-right w-28 text-xs font-bold text-teal-400">
+                            Jul 2017 – Present
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="md:hidden text-xs font-bold text-teal-400">Jul 2017 – Present</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-300 border border-teal-500/20">Full-time</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white">Tech Specialist (Data Science)</h4>
+                            <p class="text-teal-400 font-medium text-sm">Advanced World Solutions, Inc. <span class="text-gray-500">| Muntinlupa City, Philippines</span></p>
+                            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside pt-2">
+                                <li>Engineered Machine Learning and AI solutions for local and international clients in healthcare, pharmaceuticals, finance, and e-commerce.</li>
+                                <li>Design and execute data visualizations tools, predictive analytics, and model interpretability frameworks.</li>
+                                <li>Deliver technical leadership and train junior data engineers and scientists.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience Node 2 -->
+                    <div class="relative pl-8 md:pl-12">
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-darkbg border-2 border-cyan-400 flex items-center justify-center text-cyan-400 text-xs shadow-lg shadow-cyan-500/30">
+                            <i class="fa-solid fa-plane-arrival"></i>
+                        </div>
+
+                        <div class="hidden md:block absolute -left-36 top-2 text-right w-28 text-xs font-bold text-cyan-400">
+                            Oct 2019 – Jun 2022
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="md:hidden text-xs font-bold text-cyan-400">Oct 2019 – Jun 2022</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Onsite Assignee (Japan)</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white">Data Scientist</h4>
+                            <p class="text-cyan-400 font-medium text-sm">KPMG Ignition Tokyo <span class="text-gray-500">| Tokyo, Japan</span></p>
+                            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside pt-2">
+                                <li>Engineered automated tax bookkeeping, contract analysis, and ESG sustainability accounting.</li>
+                                <li>Implemented OCR, Named Entity Recognition (NER), and NLI models for financial document fraud detection.</li>
+                                <li>Collaborated directly with cross-functional Japanese engineering and audit teams in Tokyo.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience Node 3 -->
+                    <div class="relative pl-8 md:pl-12">
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-darkbg border-2 border-indigo-400 flex items-center justify-center text-indigo-400 text-xs shadow-lg shadow-indigo-500/30">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+
+                        <div class="hidden md:block absolute -left-36 top-2 text-right w-28 text-xs font-bold text-indigo-400">
+                            Oct 2018 – Nov 2018
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="md:hidden text-xs font-bold text-indigo-400">Oct 2018 – Nov 2018</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Onsite Assignee (Japan)</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white">AI Engineer</h4>
+                            <p class="text-indigo-400 font-medium text-sm">Rakuten, Inc. <span class="text-gray-500">| Tokyo, Japan</span></p>
+                            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside pt-2">
+                                <li>Developed and enhanced e-commerce conversational chatbots and automated dialogue systems.</li>
+                                <li>Focused on intent detection, entity extraction, and customer interaction flow optimization.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience Node 4 -->
+                    <div class="relative pl-8 md:pl-12">
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-darkbg border-2 border-emerald-400 flex items-center justify-center text-emerald-400 text-xs">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+
+                        <div class="hidden md:block absolute -left-36 top-2 text-right w-28 text-xs font-bold text-emerald-400">
+                            Early Career: AY 2015 - 2016
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 space-y-3">
+                            <h4 class="text-lg font-bold text-white">On the Job Trainee</h4>
+                            <p class="text-emerald-400 font-medium text-sm">Social Security System (SSS main office) <span class="text-gray-500">| Quezon City, Philipiines</span></p>
+                            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside pt-2">
+                                <li>Conducted PSE stocks analysis and training at SSS - Investments Sector.</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 space-y-3">
+                            <h4 class="text-lg font-bold text-white">Volunteer Tutor</h4>
+                            <p class="text-emerald-400 font-medium text-sm">UP Visayas <span class="text-gray-500">| Iloilo, Philippines</span></p>
+                            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside pt-2">
+                                <li>Served as a math tutor at Teaching and Learning Resource Center.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS & CERTIFICATIONS SECTION -->
+        <section id="achievements" class="py-20 px-6 border-t border-gray-800/40 relative">
+            <div class="max-w-7xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-4 max-w-3xl mx-auto">
+                    <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold">Recognition &amp; Credentials</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Awards &amp; Certifications</h3>
+                    <p class="text-gray-400 text-sm sm:text-base">Competitive hackathon wins, public speaking engagements, and professional board certifications.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Award 1 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-6 space-y-4 border-l-4 border-l-amber-400">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Speaker</span>
+                            <i class="fa-solid fa-microphone-lines text-amber-400 text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">25th Student-Faculty Conference Speaker</h4>
+                        <p class="text-xs text-gray-400">Oct 2024 • Presented data science capstone projected.</p>
+                    </div>
+
+                    <!-- Award 2 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-6 space-y-4 border-l-4 border-l-teal-400">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-teal-400 uppercase tracking-wider">Runner-up Winner</span>
+                            <i class="fa-solid fa-fish text-teal-400 text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">
+                            <a href="https://www.nora.ai/norsk/news/2022/meet-the-winners-of-fishai.html" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                <span>FishAI Sustainable Commercial Fishing Challenge</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                            </a>
+                        </h4>
+                        <p class="text-xs text-gray-400">Nov 2022 • Developed AI models for catch prediction.</p>
+                    </div>
+
+                    <!-- Award 3 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-6 space-y-4 border-l-4 border-l-cyan-400">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">1st Place Winner</span>
+                            <i class="fa-solid fa-trophy text-cyan-400 text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">
+                            <a href="https://www.hubocean.earth/press/news/climate-hackathon-2022" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                <span>Hub Ocean Climate Hackathon</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                            </a>
+                        </h4>
+                        <p class="text-xs text-gray-400">June 2022 • Global ocean data challenge for climate change monitoring and ocean sustainability.</p>
+                    </div>
+
+                    <!-- Award 4 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-6 space-y-4 border-l-4 border-l-indigo-400">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Best Use of Data</span>
+                            <i class="fa-solid fa-chart-line text-indigo-400 text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">
+                            <a href="https://asiafoundation.org/data-challenge-leverages-local-expertise-in-the-bangsamoro-autonomous-region-of-muslim-mindanao/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                <span>Bangsamoro Data Challenge</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                            </a>
+                        </h4>
+                        <p class="text-xs text-gray-400">April 2021 • Awarded for optimal data utilization of Bangsamoro Data.</p>
+                    </div>
+                    <!-- Award 5 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-6 space-y-4 border-l-4 border-l-emerald-400">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">1st Runner Up</span>
+                            <i class="fa-solid fa-award text-emerald-400 text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">
+                            <a href="https://challenges.adb.org/en/challenges/data-storytelling-visualization/pages/challenge-results?lang=en" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 hover:underline transition-colors flex items-center justify-between gap-2">
+                                <span>ADB Data Visualization Challenge</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                            </a>
+                        </h4>
+                        <p class="text-xs text-gray-400">March 2021 • Asian Development Bank competition, Data Visualization category.</p>
+                    </div>
+
+                    <!-- Award 6 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-6 space-y-4 border-l-4 border-l-purple-400">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Top 5 Finalist</span>
+                            <i class="fa-solid fa-star text-purple-400 text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">Accenture Data Challenge</h4>
+                        <p class="text-xs text-gray-400">March 2018 • Selected as top finalist in a nationwide data challenge.</p>
+                    </div>
+
+                </div>
+
+                <!-- Professional Certifications Pill List -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-4 border border-gray-800">
+                    <h4 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-certificate text-teal-400"></i> Professional Certifications &amp; Licenses
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                        <div class="p-4 rounded-xl bg-gray-900/80 border border-gray-800 flex items-center gap-3">
+                            <i class="fa-solid fa-torii-gate text-teal-400 text-lg"></i>
+                            <div>
+                                <p class="text-white font-semibold text-sm">JLPT N4 Certified</p>
+                                <p class="text-gray-500 text-xs">Japanese Language Proficiency</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-gray-900/80 border border-gray-800 flex items-center gap-3">
+                            <i class="fa-solid fa-microchip text-cyan-400 text-lg"></i>
+                            <div>
+                                <p class="text-white font-semibold text-sm">PhilNITS Certified IT Engineer</p>
+                                <p class="text-gray-500 text-xs">FE Information Technology Exam</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-gray-900/80 border border-gray-800 flex items-center gap-3">
+                            <i class="fa-solid fa-user-shield text-indigo-400 text-lg"></i>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Civil Service Professional</p>
+                                <p class="text-gray-500 text-xs">Eligible Government Professional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="py-20 px-6 border-t border-gray-800/40 relative">
+            <div class="max-w-7xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-4 max-w-3xl mx-auto">
+                    <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold">Academic Background</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Education</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    
+                    <!-- Degree 1 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-8 space-y-4 relative overflow-hidden">
+                        <div class="w-2 h-full bg-gradient-to-b from-teal-400 to-cyan-500 absolute left-0 top-0"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-teal-400">2022 – 2025</span>
+                            <i class="fa-solid fa-graduation-cap text-teal-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">Professional Master's in Data Science (Analytics)</h4>
+                        <p class="text-gray-300 font-medium text-sm">University of the Philippines Diliman</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">Advanced graduate coursework in statistical machine learning, deep learning, NLP, big data architectures, and executive data analytics.</p>
+                    </div>
+
+                    <!-- Degree 2 -->
+                    <div class="glass-card glass-card-hover rounded-2xl p-8 space-y-4 relative overflow-hidden">
+                        <div class="w-2 h-full bg-gradient-to-b from-cyan-400 to-indigo-500 absolute left-0 top-0"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-cyan-400">2013 – 2017</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-amber-400/10 text-amber-300 border border-amber-400/20">Cum Laude</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">BS Applied Mathematics</h4>
+                        <p class="text-gray-300 font-medium text-sm">University of the Philippines Visayas</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">Graduated Cum Laude. Rigorous background in mathematical modeling, differential equations, linear algebra, numerical analysis, and probability theory.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800/60 bg-darkbg/90 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-teal-500 to-cyan-500 flex items-center justify-center font-bold text-darkbg text-sm">
+                    MS
+                </div>
+                <div>
+                    <span class="font-bold text-white text-sm block">Myra F. Saet</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6 text-gray-400 text-lg">
+                <a href="mailto:myra.saet@gmail.com" class="hover:text-teal-400 transition-colors" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/myra-saet" target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://public.tableau.com/profile/myra.saet8551#!/" target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition-colors" title="Tableau"><i class="fa-solid fa-chart-pie"></i></a>
+            </div>
+
+            <p class="text-xs text-gray-500">
+                &copy; <span id="current-year"></span> Myra F. Saet. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Typing Effect in Hero Section
+        const phrases = [
+            "Data Scientist and Storyteller",
+            "Predictive Modeling & Explainable AI Advocate",
+            "Professional Masters in Data Science (Analytics)"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedTextElement = document.getElementById('typed-text');
+
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 30 : 60;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000; // Pause at end of sentence
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            typeLoop();
+        });
+
+        // Filterable Projects Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button state
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-gradient-to-r', 'from-teal-500', 'to-cyan-500', 'text-darkbg', 'shadow-lg', 'shadow-teal-500/20');
+                    b.classList.add('glass-card', 'text-gray-300');
+                });
+                btn.classList.remove('glass-card', 'text-gray-300');
+                btn.classList.add('bg-gradient-to-r', 'from-teal-500', 'to-cyan-500', 'text-darkbg', 'shadow-lg', 'shadow-teal-500/20');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category');
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Sticky Navbar Active Highlight on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
