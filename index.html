@@ -244,8 +244,8 @@
 
                             <!-- Stat Item 1 -->
                             <div class="flex items-center gap-4 p-4 rounded-2xl bg-gray-900/60 border border-gray-800/80">
-                                <div class="w-14 h-14 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 font-extrabold text-2xl">
-                                    8+
+                                <div id="stat-years" class="w-14 h-14 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 font-extrabold text-2xl">
+                                    0+
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold text-base">Years Experience</h4>
@@ -690,9 +690,10 @@
                 <div class="text-center space-y-4 max-w-3xl mx-auto">
                     <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold">Career Pathway</h2>
                     <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Work Experience</h3>
-                    <p class="text-gray-400 text-sm sm:text-base">8+ years of hands-on data science innovation in corporate tech and international assignees in Japan.</p>
+                    <p class="text-gray-400 text-sm sm:text-base">
+                        <span id="timeline-years">0+</span> years of hands-on data science innovation in corporate tech and international assignees in Japan.
+                    </p>
                 </div>
-
                 <!-- Vertical Timeline Container -->
                 <div class="relative border-l-2 border-gray-800 ml-4 md:ml-32 space-y-12">
                     
@@ -1119,6 +1120,21 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        // 1. Define your start year
+        const startYear = 2018;
+
+        // 2. Get the current year automatically from the system date
+        const currentYear = new Date().getFullYear();
+
+        // 3. Calculate the difference
+        const yearsOfExperience = currentYear - startYear;
+
+        // 4. Update the HTML content and append the "+" sign
+        document.getElementById('stat-years').textContent = yearsOfExperience + '+';
+        document.getElementById('timeline-years').textContent = yearsOfExperience + '+';
     </script>
 </body>
 </html>
